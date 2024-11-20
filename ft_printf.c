@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:26:44 by imiqor            #+#    #+#             */
-/*   Updated: 2024/11/20 16:52:46 by imiqor           ###   ########.fr       */
+/*   Updated: 2024/11/20 17:06:49 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_pointer(unsigned long nb, int *len)
 	ft_putchar('x', len);
 	ft_pointerr(nb, len);
 }
+
 void	ft_hexa_lower(unsigned int n, int *len)
 {
 	char	*hexa_lower;
@@ -29,17 +30,19 @@ void	ft_hexa_lower(unsigned int n, int *len)
 	}
 	ft_putchar(hexa_lower[n % 16], len);
 }
+
 void	ft_hexa_upper(unsigned int n, int *len)
 {
-	char	*hexa_lower;
+	char	*hexa_upper;
 
-	hexa_lower = "0123456789ABCDEF";
+	hexa_upper = "0123456789ABCDEF";
 	if (n >= 16)
 	{
-		ft_hexa_lower(n / 16, len);
+		ft_hexa_upper(n / 16, len);
 	}
-	ft_putchar(hexa_lower[n % 16], len);
+	ft_putchar(hexa_upper[n % 16], len);
 }
+
 void	check_and_fetch(char format, int *len, va_list params)
 {
 	if (format == 'i' || format == 'd')
@@ -59,6 +62,7 @@ void	check_and_fetch(char format, int *len, va_list params)
 	else if (format == 'X')
 		ft_hexa_upper(va_arg(params, unsigned int), len);
 }
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	params;
@@ -68,6 +72,8 @@ int	ft_printf(const char *format, ...)
 	va_start(params, format);
 	len = 0;
 	i = 0;
+	if (write(1, 0, 0) == -1)
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -82,12 +88,5 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(params);
-	return (len); 
-}
-
-int main()
-{
-
-	int i = ft_printf("%");
-	ft_printf("%d",i);
+	return (len);
 }
