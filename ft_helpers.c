@@ -6,7 +6,7 @@
 /*   By: imiqor <imiqor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:00:39 by imiqor            #+#    #+#             */
-/*   Updated: 2024/11/20 17:04:50 by imiqor           ###   ########.fr       */
+/*   Updated: 2024/11/21 00:01:50 by imiqor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	ft_put_unsigned_nbr(unsigned int n, int *len)
 	}
 	else
 	{
-		ft_putnumber(n / 10, len);
-		ft_putnumber(n % 10, len);
+		ft_put_unsigned_nbr(n / 10, len);
+		ft_put_unsigned_nbr(n % 10, len);
 	}
 	(void)len;
 }
